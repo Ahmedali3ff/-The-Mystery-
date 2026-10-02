@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -16,7 +16,6 @@
           <h1 class="title">THE MYSTERY</h1>
           <p class="tagline">Every clue has a story. Every story has a lie.</p>
         </div>
-
         <div class="home-actions">
           <button class="btn btn-primary" onclick="startCase()">Start Case</button>
           <button class="btn btn-secondary" onclick="showHowToPlay()">How to Play</button>
@@ -27,36 +26,75 @@
     <!-- CASE INTRODUCTION SCREEN -->
     <section id="case-intro" class="screen">
       <div class="case-intro-content">
-        
         <header class="case-header">
           <span class="case-number">CASE #001</span>
           <h2 class="case-title">The Missing Prototype</h2>
         </header>
-
         <article class="case-body">
-          <p class="case-description">
-            A confidential research prototype has disappeared from a locked laboratory 
-            at Blackwood Research Lab. Security footage shows no forced entry. 
-            The last person to access the lab left hours before the theft was discovered.
-          </p>
-
+          <p class="case-description">A confidential research prototype has disappeared from a locked laboratory at Blackwood Research Lab. Security footage shows no forced entry. The last person to access the lab left hours before the theft was discovered.</p>
           <div class="case-meta">
-            <div class="meta-item">
-              <span class="meta-label">Location</span>
-              <span class="meta-value">Blackwood Research Lab</span>
-            </div>
-            <div class="meta-item">
-              <span class="meta-label">Time</span>
-              <span class="meta-value">11:47 PM</span>
-            </div>
+            <div class="meta-item"><span class="meta-label">Location</span><span class="meta-value">Blackwood Research Lab</span></div>
+            <div class="meta-item"><span class="meta-label">Time</span><span class="meta-value">11:47 PM</span></div>
           </div>
         </article>
-
         <footer class="case-actions">
           <button class="btn btn-primary" onclick="beginInvestigation()">Begin Investigation</button>
-          <button class="btn btn-text" onclick="navigateTo('home')">← Back to Home</button>
+          <button class="btn btn-text" onclick="navigateTo('home')">Back to Home</button>
         </footer>
+      </div>
+    </section>
 
+    <!-- 2D LAB SCREEN -->
+    <section id="lab" class="screen lab-screen">
+      <canvas id="lab-canvas"></canvas>
+
+      <div id="hud-objective" class="hud-objective">
+        <span class="hud-label">OBJECTIVE</span>
+        <span id="hud-text">Investigate the laboratory and find clues.</span>
+        <span id="hud-progress">0 / 4 clues discovered</span>
+      </div>
+
+      <div class="hud-controls">
+        <span>WASD / Arrows: Move</span>
+        <span>E: Interact</span>
+        <span>J: Journal</span>
+        <span>Tab: Dashboard</span>
+      </div>
+
+      <div id="interact-prompt" class="interact-prompt hidden">E - Investigate</div>
+
+      <div id="dialogue-panel" class="dialogue-panel hidden">
+        <div class="dialogue-inner">
+          <div class="dialogue-speaker-row">
+            <span id="dialogue-speaker" class="dialogue-speaker"></span>
+            <span id="dialogue-role" class="dialogue-role"></span>
+          </div>
+          <p id="dialogue-text" class="dialogue-text"></p>
+          <div class="dialogue-footer">
+            <button class="btn btn-primary dialogue-close-btn" onclick="closeDialogue()">Close [E]</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="journal-panel" class="journal-panel hidden">
+        <div class="journal-inner">
+          <div class="journal-header">
+            <h3 class="journal-title">DETECTIVE'S JOURNAL</h3>
+            <button class="journal-close-btn" onclick="closeJournal()">X</button>
+          </div>
+          <div class="journal-tabs">
+            <button class="journal-tab active" onclick="switchJournalTab('evidence', this)">Evidence</button>
+            <button class="journal-tab" onclick="switchJournalTab('suspects-tab', this)">Suspects</button>
+            <button class="journal-tab" onclick="switchJournalTab('timeline-tab', this)">Timeline</button>
+          </div>
+          <div id="journal-evidence" class="journal-content active"></div>
+          <div id="journal-suspects-tab" class="journal-content"></div>
+          <div id="journal-timeline-tab" class="journal-content"></div>
+          <div class="journal-footer">
+            <button class="btn btn-primary" onclick="closeJournalAndDeduce()">Make Deduction</button>
+            <button class="btn btn-secondary" onclick="closeJournalToDashboard()">Full Dashboard</button>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -67,36 +105,15 @@
           <h2 class="dashboard-title">Investigation Dashboard</h2>
           <p class="dashboard-subtitle">Review all available information before making your deduction.</p>
         </header>
-
         <div class="dashboard-grid">
-          <div class="dashboard-card" onclick="navigateTo('suspects')">
-            <div class="card-icon">👤</div>
-            <h3 class="card-title">Suspects</h3>
-            <p class="card-desc">Review profiles and statements</p>
-          </div>
-
-          <div class="dashboard-card" onclick="navigateTo('evidence')">
-            <div class="card-icon">🔍</div>
-            <h3 class="card-title">Evidence</h3>
-            <p class="card-desc">Examine collected evidence</p>
-          </div>
-
-          <div class="dashboard-card" onclick="navigateTo('timeline')">
-            <div class="card-icon">⏱</div>
-            <h3 class="card-title">Timeline</h3>
-            <p class="card-desc">Analyze sequence of events</p>
-          </div>
-
-          <div class="dashboard-card" onclick="navigateTo('interviews')">
-            <div class="card-icon">💬</div>
-            <h3 class="card-title">Interviews</h3>
-            <p class="card-desc">Read suspect testimonies</p>
-          </div>
+          <div class="dashboard-card" onclick="navigateTo('suspects')"><div class="card-icon">!</div><h3 class="card-title">Suspects</h3><p class="card-desc">Review profiles and statements</p></div>
+          <div class="dashboard-card" onclick="navigateTo('evidence')"><div class="card-icon">?</div><h3 class="card-title">Evidence</h3><p class="card-desc">Examine collected evidence</p></div>
+          <div class="dashboard-card" onclick="navigateTo('timeline')"><div class="card-icon">T</div><h3 class="card-title">Timeline</h3><p class="card-desc">Analyze sequence of events</p></div>
+          <div class="dashboard-card" onclick="navigateTo('interviews')"><div class="card-icon">Q</div><h3 class="card-title">Interviews</h3><p class="card-desc">Read suspect testimonies</p></div>
         </div>
-
         <footer class="dashboard-actions">
           <button class="btn btn-primary" onclick="navigateTo('deduction')">Make Final Deduction</button>
-          <button class="btn btn-text" onclick="navigateTo('case-intro')">← Back to Case</button>
+          <button class="btn btn-text" onclick="navigateTo('lab')">Back to Lab</button>
         </footer>
       </div>
     </section>
@@ -104,98 +121,59 @@
     <!-- SUSPECTS SCREEN -->
     <section id="suspects" class="screen">
       <div class="content-wrapper">
-        <header class="content-header">
-          <h2 class="content-title">Suspects</h2>
-          <p class="content-subtitle">Four individuals with access to the laboratory.</p>
-        </header>
-
+        <header class="content-header"><h2 class="content-title">Suspects</h2><p class="content-subtitle">Four individuals with access to the laboratory.</p></header>
         <div id="suspects-list" class="suspects-grid"></div>
-
-        <footer class="content-actions">
-          <button class="btn btn-secondary" onclick="navigateTo('dashboard')">← Back to Dashboard</button>
-        </footer>
+        <footer class="content-actions"><button class="btn btn-secondary" onclick="navigateTo('dashboard')">Back to Dashboard</button></footer>
       </div>
     </section>
 
     <!-- EVIDENCE SCREEN -->
     <section id="evidence" class="screen">
       <div class="content-wrapper">
-        <header class="content-header">
-          <h2 class="content-title">Evidence</h2>
-          <p class="content-subtitle">Physical and digital evidence collected from the scene.</p>
-        </header>
-
+        <header class="content-header"><h2 class="content-title">Evidence</h2><p class="content-subtitle">Physical and digital evidence collected from the scene.</p></header>
         <div id="evidence-list" class="evidence-grid"></div>
-
-        <footer class="content-actions">
-          <button class="btn btn-secondary" onclick="navigateTo('dashboard')">← Back to Dashboard</button>
-        </footer>
+        <footer class="content-actions"><button class="btn btn-secondary" onclick="navigateTo('dashboard')">Back to Dashboard</button></footer>
       </div>
     </section>
 
     <!-- TIMELINE SCREEN -->
     <section id="timeline" class="screen">
       <div class="content-wrapper">
-        <header class="content-header">
-          <h2 class="content-title">Timeline</h2>
-          <p class="content-subtitle">Sequence of events on the night of the incident.</p>
-        </header>
-
+        <header class="content-header"><h2 class="content-title">Timeline</h2><p class="content-subtitle">Sequence of events on the night of the incident.</p></header>
         <div id="timeline-list" class="timeline-container"></div>
-
-        <footer class="content-actions">
-          <button class="btn btn-secondary" onclick="navigateTo('dashboard')">← Back to Dashboard</button>
-        </footer>
+        <footer class="content-actions"><button class="btn btn-secondary" onclick="navigateTo('dashboard')">Back to Dashboard</button></footer>
       </div>
     </section>
 
     <!-- INTERVIEWS SCREEN -->
     <section id="interviews" class="screen">
       <div class="content-wrapper">
-        <header class="content-header">
-          <h2 class="content-title">Interviews</h2>
-          <p class="content-subtitle">Statements provided by each suspect.</p>
-        </header>
-
+        <header class="content-header"><h2 class="content-title">Interviews</h2><p class="content-subtitle">Statements provided by each suspect.</p></header>
         <div id="interviews-list" class="interviews-container"></div>
-
-        <footer class="content-actions">
-          <button class="btn btn-secondary" onclick="navigateTo('dashboard')">← Back to Dashboard</button>
-        </footer>
+        <footer class="content-actions"><button class="btn btn-secondary" onclick="navigateTo('dashboard')">Back to Dashboard</button></footer>
       </div>
     </section>
 
     <!-- FINAL DEDUCTION SCREEN -->
     <section id="deduction" class="screen">
       <div class="deduction-content">
-        <header class="content-header">
-          <h2 class="content-title">Final Deduction</h2>
-          <p class="content-subtitle">Based on the evidence, who do you believe is responsible?</p>
-        </header>
-
+        <header class="content-header"><h2 class="content-title">Final Deduction</h2><p class="content-subtitle">Based on the evidence, who do you believe is responsible?</p></header>
         <form id="deduction-form" class="deduction-form">
           <div class="form-group">
             <label class="form-label">Primary Suspect</label>
-            <select id="suspect-select" class="form-select" required>
-              <option value="">Select a suspect...</option>
-            </select>
+            <select id="suspect-select" class="form-select" required><option value="">Select a suspect...</option></select>
           </div>
-
           <div class="form-group">
             <label class="form-label">What Happened?</label>
             <textarea id="theory-input" class="form-textarea" rows="4" placeholder="Describe your theory..." required></textarea>
           </div>
-
           <div class="form-group">
             <label class="form-label">Key Evidence</label>
-            <select id="evidence-select" class="form-select" required>
-              <option value="">Select key evidence...</option>
-            </select>
+            <select id="evidence-select" class="form-select" required><option value="">Select key evidence...</option></select>
           </div>
-
           <div class="form-actions">
             <button type="submit" class="btn btn-primary">Submit Deduction</button>
-            <button type="button" class="btn btn-text" onclick="navigateTo('dashboard')">← Back to Dashboard</button>
+            <button type="button" class="btn btn-text" onclick="navigateTo('dashboard')">Back to Dashboard</button>
           </div>
         </form>
       </div>
@@ -203,9 +181,7 @@
 
     <!-- RESULT SCREEN -->
     <section id="result" class="screen">
-      <div class="result-content">
-        <div id="result-display"></div>
-      </div>
+      <div class="result-content"><div id="result-display"></div></div>
     </section>
 
     <script src="script.js"></script>
