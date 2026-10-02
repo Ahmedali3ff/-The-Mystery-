@@ -49,19 +49,24 @@
       <canvas id="lab-canvas"></canvas>
 
       <div id="hud-objective" class="hud-objective">
+        <div class="hud-case-title">
+          <span class="hud-case-number">CASE #001</span>
+          <span class="hud-case-name">THE MISSING PROTOTYPE</span>
+        </div>
+        <div class="hud-divider"></div>
         <span class="hud-label">OBJECTIVE</span>
-        <span id="hud-text">Investigate the laboratory and find clues.</span>
+        <span id="hud-text">Investigate the laboratory and collect evidence.</span>
         <span id="hud-progress">0 / 4 clues discovered</span>
       </div>
 
       <div class="hud-controls">
-        <span>WASD / Arrows: Move</span>
-        <span>E: Interact</span>
-        <span>J: Journal</span>
-        <span>Tab: Dashboard</span>
+        <span><kbd>WASD</kbd> Move</span>
+        <span><kbd>E</kbd> Interact</span>
+        <span><kbd>J</kbd> Journal</span>
+        <span><kbd>Tab</kbd> Dashboard</span>
       </div>
 
-      <div id="interact-prompt" class="interact-prompt hidden">E - Investigate</div>
+      <div id="interact-prompt" class="interact-prompt hidden">E &mdash; Investigate</div>
 
       <div id="dialogue-panel" class="dialogue-panel hidden">
         <div class="dialogue-inner">
@@ -187,3 +192,4 @@
     <script src="script.js"></script>
   </body>
 </html>
+

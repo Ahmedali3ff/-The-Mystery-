@@ -3,21 +3,33 @@
    ============================================= */
 
 /* =============================================
-   GAME DATA
+   GAME DATA (unchanged)
    ============================================= */
 
 const suspects = [
-  { id: 'alex',   name: 'Alex Morgan',   role: 'Lab Engineer',     description: 'Responsible for maintaining laboratory equipment and systems. Has been with the company for 3 years.', statement: 'I left the lab at 10:45 PM after running diagnostics. Everything was normal when I left. I was home by 11:15 PM.' },
-  { id: 'maya',   name: 'Maya Carter',   role: 'Security Officer', description: 'Head of night security with full access to all areas. Known for being thorough and detail-oriented.',   statement: "I was monitoring the cameras from the security office all night. The system went offline briefly around 11:30 PM, but I didn't notice anything unusual." },
-  { id: 'daniel', name: 'Daniel Reed',   role: 'Researcher',       description: 'Lead researcher on the prototype project. Has intimate knowledge of the device and its value.',          statement: 'I was working late in my office on the second floor. I sent some project emails around 11:40 PM but never went near the lab that night.' },
-  { id: 'sarah',  name: 'Sarah Bennett', role: 'Project Manager',  description: 'Oversees all research projects and budget allocation. Under pressure to deliver results.',              statement: "I left the building at 9 PM. I have meeting notes and my car's parking lot timestamp to prove it. I wasn't even in the building." }
+  { id: 'alex',   name: 'Alex Morgan',   role: 'Lab Engineer',
+    description: 'Responsible for maintaining laboratory equipment and systems. Has been with the company for 3 years.',
+    statement: 'I left the lab at 10:45 PM after running diagnostics. Everything was normal when I left. I was home by 11:15 PM.' },
+  { id: 'maya',   name: 'Maya Carter',   role: 'Security Officer',
+    description: 'Head of night security with full access to all areas. Known for being thorough and detail-oriented.',
+    statement: "I was monitoring the cameras from the security office all night. The system went offline briefly around 11:30 PM, but I didn't notice anything unusual." },
+  { id: 'daniel', name: 'Daniel Reed',   role: 'Researcher',
+    description: 'Lead researcher on the prototype project. Has intimate knowledge of the device and its value.',
+    statement: 'I was working late in my office on the second floor. I sent some project emails around 11:40 PM but never went near the lab that night.' },
+  { id: 'sarah',  name: 'Sarah Bennett', role: 'Project Manager',
+    description: 'Oversees all research projects and budget allocation. Under pressure to deliver results.',
+    statement: "I left the building at 9 PM. I have meeting notes and my car's parking lot timestamp to prove it. I wasn't even in the building." }
 ];
 
 const evidence = [
-  { id: 'camera',  title: 'Security Camera Malfunction', description: 'Security camera footage stopped recording at exactly 11:31 PM. The system logs show it was manually disabled from the security terminal using admin credentials.' },
-  { id: 'keycard', title: 'Keycard Access Log',          description: "Maya Carter's security keycard was used to access the laboratory at 11:34 PM. However, Maya claims she was in the security office at that time." },
-  { id: 'email',   title: 'Encrypted Email',             description: "An encrypted email with attachment related to the prototype specifications was sent from Daniel Reed's computer at 11:40 PM to an external address." },
-  { id: 'lock',    title: 'Laboratory Lock Status',      description: 'The laboratory door was recorded as locked and secured at 11:47 PM when the missing prototype was discovered. No signs of forced entry.' }
+  { id: 'camera',  title: 'Security Camera Malfunction',
+    description: 'Security camera footage stopped recording at exactly 11:31 PM. The system logs show it was manually disabled from the security terminal using admin credentials.' },
+  { id: 'keycard', title: 'Keycard Access Log',
+    description: "Maya Carter's security keycard was used to access the laboratory at 11:34 PM. However, Maya claims she was in the security office at that time." },
+  { id: 'email',   title: 'Encrypted Email',
+    description: "An encrypted email with attachment related to the prototype specifications was sent from Daniel Reed's computer at 11:40 PM to an external address." },
+  { id: 'lock',    title: 'Laboratory Lock Status',
+    description: 'The laboratory door was recorded as locked and secured at 11:47 PM when the missing prototype was discovered. No signs of forced entry.' }
 ];
 
 const timeline = [
@@ -28,10 +40,14 @@ const timeline = [
 ];
 
 const interviews = [
-  { name: 'Alex Morgan',   role: 'Lab Engineer',     statement: "I left at 10:45 PM after finishing my diagnostics routine. I always double-check everything before I go. The prototype was secure in its case when I left. I drove straight home." },
-  { name: 'Maya Carter',   role: 'Security Officer', statement: "I was in the security office all evening. Yes, the cameras went down around 11:30, but that happens sometimes. As for my keycard showing lab access at 11:34 - that's impossible. Someone must have cloned it." },
-  { name: 'Daniel Reed',   role: 'Researcher',       statement: "I was working late in my office. I sent a few project emails around 11:40, but they were routine updates. I never went to the lab that night. The email encryption is standard protocol." },
-  { name: 'Sarah Bennett', role: 'Project Manager',  statement: "I wasn't even in the building. I left at 9 PM - I had dinner plans. Security logs will show my exit time. I don't have the technical knowledge to disable cameras anyway." }
+  { name: 'Alex Morgan',   role: 'Lab Engineer',
+    statement: "I left at 10:45 PM after finishing my diagnostics routine. I always double-check everything before I go. The prototype was secure in its case when I left. I drove straight home." },
+  { name: 'Maya Carter',   role: 'Security Officer',
+    statement: "I was in the security office all evening. Yes, the cameras went down around 11:30, but that happens sometimes. As for my keycard showing lab access at 11:34 - that's impossible. Someone must have cloned it." },
+  { name: 'Daniel Reed',   role: 'Researcher',
+    statement: "I was working late in my office. I sent a few project emails around 11:40, but they were routine updates. I never went to the lab that night. The email encryption is standard protocol." },
+  { name: 'Sarah Bennett', role: 'Project Manager',
+    statement: "I wasn't even in the building. I left at 9 PM - I had dinner plans. Security logs will show my exit time. I don't have the technical knowledge to disable cameras anyway." }
 ];
 
 const solution = {
@@ -52,55 +68,63 @@ function navigateTo(screenId) {
   if (screenId === 'lab') initLab();
 }
 
-/* =============================================
-   HOME / INTRO
-   ============================================= */
-
-function startCase() { navigateTo('case-intro'); }
-
-function showHowToPlay() {
-  alert('HOW TO PLAY\n\n1. Explore Blackwood Research Lab with WASD or arrow keys.\n2. Press E near objects or suspects to interact.\n3. Press J to open your detective journal.\n4. Collect all 4 clues then make your Final Deduction.');
-}
-
+function startCase()          { navigateTo('case-intro'); }
 function beginInvestigation() { navigateTo('lab'); }
 
+function showHowToPlay() {
+  alert('HOW TO PLAY\n\n1. Explore Blackwood Research Lab with WASD or arrow keys.\n2. Walk near objects or suspects and press E to interact.\n3. Press J to open your detective journal.\n4. Collect all 4 clues, then make your Final Deduction.');
+}
+
 /* =============================================
-   STATIC SCREENS
+   STATIC SCREENS (unchanged)
    ============================================= */
 
 function renderSuspects() {
   document.getElementById('suspects-list').innerHTML = suspects.map(s => `
-    <div class="suspect-card"><div class="suspect-header"><h3 class="suspect-name">${s.name}</h3><p class="suspect-role">${s.role}</p></div>
-    <p class="suspect-description">${s.description}</p><blockquote class="suspect-statement">"${s.statement}"</blockquote></div>`).join('');
+    <div class="suspect-card">
+      <div class="suspect-header"><h3 class="suspect-name">${s.name}</h3><p class="suspect-role">${s.role}</p></div>
+      <p class="suspect-description">${s.description}</p>
+      <blockquote class="suspect-statement">"${s.statement}"</blockquote>
+    </div>`).join('');
 }
 
 function renderEvidence() {
   document.getElementById('evidence-list').innerHTML = evidence.map((e, i) => `
-    <div class="evidence-item"><div class="evidence-header"><span class="evidence-number">Evidence ${i+1}</span><h3 class="evidence-title">${e.title}</h3></div>
-    <p class="evidence-description">${e.description}</p></div>`).join('');
+    <div class="evidence-item">
+      <div class="evidence-header"><span class="evidence-number">Evidence ${i+1}</span><h3 class="evidence-title">${e.title}</h3></div>
+      <p class="evidence-description">${e.description}</p>
+    </div>`).join('');
 }
 
 function renderTimeline() {
   document.getElementById('timeline-list').innerHTML = timeline.map(t => `
-    <div class="timeline-item"><div class="timeline-time">${t.time}</div><div class="timeline-event">${t.event}</div></div>`).join('');
+    <div class="timeline-item">
+      <div class="timeline-time">${t.time}</div><div class="timeline-event">${t.event}</div>
+    </div>`).join('');
 }
 
 function renderInterviews() {
   document.getElementById('interviews-list').innerHTML = interviews.map(i => `
-    <div class="interview-item"><div class="interview-header"><h3 class="interview-name">${i.name}</h3><p class="interview-role">${i.role}</p></div>
-    <p class="interview-statement">${i.statement}</p></div>`).join('');
+    <div class="interview-item">
+      <div class="interview-header"><h3 class="interview-name">${i.name}</h3><p class="interview-role">${i.role}</p></div>
+      <p class="interview-statement">${i.statement}</p>
+    </div>`).join('');
 }
 
 function populateDeductionForm() {
-  document.getElementById('suspect-select').innerHTML = '<option value="">Select a suspect...</option>' + suspects.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
-  document.getElementById('evidence-select').innerHTML = '<option value="">Select key evidence...</option>' + evidence.map(e => `<option value="${e.id}">${e.title}</option>`).join('');
+  document.getElementById('suspect-select').innerHTML =
+    '<option value="">Select a suspect...</option>' +
+    suspects.map(s => `<option value="${s.id}">${s.name}</option>`).join('');
+  document.getElementById('evidence-select').innerHTML =
+    '<option value="">Select key evidence...</option>' +
+    evidence.map(e => `<option value="${e.id}">${e.title}</option>`).join('');
 }
 
 function handleDeductionSubmit(evt) {
   evt.preventDefault();
-  const sid = document.getElementById('suspect-select').value;
-  const theory = document.getElementById('theory-input').value;
-  const eid = document.getElementById('evidence-select').value;
+  const sid   = document.getElementById('suspect-select').value;
+  const theory= document.getElementById('theory-input').value;
+  const eid   = document.getElementById('evidence-select').value;
   if (!sid || !theory || !eid) { alert('Please complete all fields.'); return; }
   showResult((sid === solution.suspect) && (eid === solution.keyEvidence), sid, eid);
 }
@@ -115,15 +139,20 @@ function showResult(solved, sid, eid) {
       <div><h3 class="result-section-title">What Happened</h3><p class="result-section-content">${solution.explanation}</p></div>
       <div><h3 class="result-section-title">Key Evidence</h3><p class="result-section-content">The keycard log proved Maya entered the lab herself, contradicting her own alibi.</p></div>
     </div>
-    <div class="result-actions"><button class="btn btn-primary" onclick="resetGame()">Play Again</button><button class="btn btn-secondary" onclick="navigateTo('dashboard')">Review Evidence</button></div>`
-  : `
+    <div class="result-actions">
+      <button class="btn btn-primary" onclick="resetGame()">Play Again</button>
+      <button class="btn btn-secondary" onclick="navigateTo('dashboard')">Review Evidence</button>
+    </div>` : `
     <h2 class="result-verdict unsolved">CASE UNSOLVED</h2>
     <div class="result-explanation">
       <div><h3 class="result-section-title">Your Deduction</h3><p class="result-section-content">You suspected ${sName} based on ${eName}, but the evidence points elsewhere.</p></div>
       <div><h3 class="result-section-title">What Actually Happened</h3><p class="result-section-content">${solution.explanation}</p></div>
       <div><h3 class="result-section-title">The Critical Clue</h3><p class="result-section-content">Maya's keycard log and her own alibi directly contradict each other.</p></div>
     </div>
-    <div class="result-actions"><button class="btn btn-primary" onclick="resetGame()">Try Again</button><button class="btn btn-secondary" onclick="navigateTo('dashboard')">Review Evidence</button></div>`;
+    <div class="result-actions">
+      <button class="btn btn-primary" onclick="resetGame()">Try Again</button>
+      <button class="btn btn-secondary" onclick="navigateTo('dashboard')">Review Evidence</button>
+    </div>`;
   navigateTo('result');
 }
 
@@ -134,99 +163,253 @@ function resetGame() {
   navigateTo('home');
 }
 
-/* =============================================
-   2D LAB - CONSTANTS
-   ============================================= */
+/* ============================================================
+   2D LAB ENGINE
+   ============================================================ */
 
-const TILE = 40;
-const COLS = 40;
-const ROWS = 28;
-const MAP_W = COLS * TILE;
-const MAP_H = ROWS * TILE;
+/* --- Constants -------------------------------------------- */
+const TILE   = 48;   // larger tiles = bigger, more readable map
+const COLS   = 36;
+const ROWS   = 26;
+const MAP_W  = COLS * TILE;
+const MAP_H  = ROWS * TILE;
+const PLAYER_SPEED = 180;  // pixels per second (delta-time based)
 
-const COLORS = {
-  floorA: '#10121a', floorB: '#0d0f16',
-  wall: '#1c1f28', wallTop: '#262a36',
-  desk: '#1a1714', deskTop: '#252018',
-  computer: '#08101e', screen: '#0d2a44',
-  cabinet: '#181818',
-  camBody: '#1c1c22', camLight: '#cc2020',
-  keypad: '#0c1520', keypadLight: '#c8a96e',
-  door: '#1e1608', doorFrame: '#c8a96e',
-  labEq: '#121820', labLight: '#3a7a9a',
-  npc: ['#7a5f38','#4a6a7a','#5a7a4a','#7a4a5a']
+const C = {
+  // Floors
+  outerBg:    '#080a0e',
+  floorMain:  '#0f1218',
+  floorSec:   '#0c0f1c',
+  floorRes:   '#0e1118',
+  floorStore: '#0b0d11',
+  floorCorr:  '#0d1016',
+  floorOff:   '#0f1218',
+  floorTile:  'rgba(255,255,255,0.018)',
+  // Walls
+  wallBase:   '#1e2230',
+  wallFace:   '#2a2f40',
+  wallShadow: '#0a0c12',
+  // Doors
+  doorOpen:   '#1a1408',
+  doorFrame:  '#b89550',
+  // Furniture
+  deskBody:   '#1c1a14',
+  deskSurf:   '#28231a',
+  deskEdge:   '#342c20',
+  cabinetA:   '#161618',
+  cabinetB:   '#1e1e22',
+  // Tech
+  pcCase:     '#0a101e',
+  pcScreen:   '#0c2840',
+  pcGlow:     'rgba(60,140,240,0.3)',
+  serverA:    '#121820',
+  serverB:    '#1a2030',
+  serverLED:  '#00c860',
+  // Security
+  camBody:    '#1a1c22',
+  camLens:    '#0a0c14',
+  camRed:     '#d03020',
+  keypadBody: '#0c1420',
+  keypadLit:  '#c8a050',
+  // Lab
+  labBench:   '#141c1e',
+  labEquip:   '#101820',
+  labBlue:    '#2a6888',
+  // NPC base colors
+  npcSkin:    '#c09060',
 };
 
-/* =============================================
-   2D LAB - MAP
-   ============================================= */
+/* ----------------------------------------------------------------
+   MAP DEFINITION
+   Rooms are tile-coordinate rectangles.
+   Walls are built from their borders, with explicit gap tiles
+   (door openings) punched through so the player can navigate.
+   ---------------------------------------------------------------- */
 
-// Wall collision rects [col, row, w, h]
-const WALLS = [
-  // Border
-  [0,0,COLS,1],[0,ROWS-1,COLS,1],[0,0,1,ROWS],[COLS-1,0,1,ROWS],
-  // Main lab
-  [2,2,14,1],[2,13,14,1],[2,2,1,12],[15,2,1,12],
-  // Security room
-  [18,2,10,1],[18,9,10,1],[18,2,1,8],[27,2,1,8],
-  // Research room
-  [30,2,8,1],[30,13,8,1],[30,2,1,12],[37,2,1,12],
-  // Storage
-  [2,16,8,1],[2,25,8,1],[2,16,1,10],[9,16,1,10],
-  // Corridor
-  [10,16,20,1],[10,19,20,1],
-  // Office
-  [30,16,8,1],[30,25,8,1],[30,16,1,10],[37,16,1,10]
+// Room floor areas  [col, row, widthTiles, heightTiles]
+const ROOMS = {
+  main:     { x:1,  y:1,  w:13, h:11, color: C.floorMain  },   // Main Laboratory
+  security: { x:16, y:1,  w:9,  h:7,  color: C.floorSec   },   // Security Room
+  research: { x:27, y:1,  w:8,  h:11, color: C.floorRes   },   // Research Room
+  storage:  { x:1,  y:14, w:7,  h:11, color: C.floorStore },   // Storage Area
+  corridor: { x:8,  y:14, w:19, h:4,  color: C.floorCorr  },   // Corridor
+  office:   { x:27, y:14, w:8,  h:11, color: C.floorOff   }    // Office
+};
+
+/* Collision map: 1 = solid, 0 = passable.
+   We build this from the room walls + furniture, with door gaps explicitly
+   cleared. This makes collision O(1) per check (bitmap lookup). */
+let CMAP = null;   // will be built in buildCollisionMap()
+
+/* Door openings — each entry removes a wall segment.
+   Format: [col, row]  (a single tile to clear) */
+const DOOR_TILES = [
+  // Main Lab south wall  -> Corridor (col 7-8, row 12 is the wall row)
+  [7, 12], [8, 12],
+  // Storage north wall -> Corridor (col 4-5, row 14 is wall row)
+  [4, 14], [5, 14],
+  // Corridor east -> Office (col 27 is wall col, rows 15-16)
+  [27, 15], [27, 16],
+  // Research south -> Corridor (col 29-30, row 12)
+  [29, 12], [30, 12],
+  // Security south -> Corridor (col 19-20, row 8)
+  [19, 8], [20, 8],
+  // Main Lab east wall -> (hallway between rooms, col 14, rows 4-5)
+  [14, 4], [14, 5],
+  // Security west wall -> col 16, rows 4-5
+  [16, 4], [16, 5],
+  // Research west -> col 27, rows 4-5
+  [27, 4], [27, 5],
+  // Office west -> col 27, rows 16-17
+  [27, 16], [27, 17]
 ];
 
-// Furniture collision rects [col, row, w, h]
-const FURNITURE = [
-  [3,3,4,2],[3,7,4,2],[10,3,4,2],[10,7,4,2],  // main lab desks
-  [19,3,7,2],[19,6,3,2],                         // security desk+cabinet
-  [31,3,5,2],[31,7,5,2],                         // research desks
-  [3,17,6,2],[3,21,6,2],                         // storage cabinets
-  [31,17,5,2],[31,21,5,2]                        // office desk
+/* Furniture rects that block movement [col, row, w, h] */
+const FURNITURE_RECTS = [
+  // Main Lab — two rows of desks
+  [2,  3,  3, 1], [2,  5,  3, 1], [2,  8,  3, 1],
+  [8,  3,  3, 1], [8,  6,  3, 1], [8,  9,  3, 1],
+  // Security Room — main console + filing cabinets
+  [17, 2,  6, 1], [17, 4,  2, 2], [21, 4,  2, 2],
+  // Research Room — lab benches
+  [28, 2,  5, 1], [28, 5,  5, 1], [28, 8,  5, 1],
+  // Storage — shelving units
+  [2,  15, 5, 1], [2,  17, 5, 1], [2,  19, 5, 1], [2,  21, 5, 1],
+  // Corridor — nothing blocking the path
+  // Office — desk + shelves
+  [28, 15, 5, 1], [28, 18, 5, 1], [28, 21, 5, 1]
 ];
 
-// Interactable objects
+/* ----------------------------------------------------------------
+   BUILD COLLISION BITMAP
+   ---------------------------------------------------------------- */
+function buildCollisionMap() {
+  // Allocate flat Uint8Array: 1=solid, 0=open
+  CMAP = new Uint8Array(COLS * ROWS);
+
+  // Helper: mark rect solid
+  function solidRect(cx, cy, cw, ch) {
+    for (let r = cy; r < cy + ch; r++)
+      for (let c = cx; c < cx + cw; c++)
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS)
+          CMAP[r * COLS + c] = 1;
+  }
+
+  // Everything outside rooms is solid by default
+  CMAP.fill(1);
+
+  // Carve out room floors (open)
+  for (const rm of Object.values(ROOMS)) {
+    for (let r = rm.y; r < rm.y + rm.h; r++)
+      for (let c = rm.x; c < rm.x + rm.w; c++)
+        if (r >= 0 && r < ROWS && c >= 0 && c < COLS)
+          CMAP[r * COLS + c] = 0;
+  }
+
+  // Re-stamp furniture as solid
+  for (const [fc, fr, fw, fh] of FURNITURE_RECTS) solidRect(fc, fr, fw, fh);
+
+  // Punch door gaps through (re-open door tiles)
+  for (const [dc, dr] of DOOR_TILES) {
+    if (dr >= 0 && dr < ROWS && dc >= 0 && dc < COLS)
+      CMAP[dr * COLS + dc] = 0;
+  }
+}
+
+/* ----------------------------------------------------------------
+   COLLISION CHECK  (pixel-space, AABB vs collision bitmap)
+   ---------------------------------------------------------------- */
+function isSolid(col, row) {
+  if (col < 0 || col >= COLS || row < 0 || row >= ROWS) return true;
+  return CMAP[row * COLS + col] === 1;
+}
+
+// Check if a pixel-rect (px,py,pw,ph) overlaps any solid tile
+function wouldCollide(px, py) {
+  const pw = player.w, ph = player.h;
+  // Sample four corners + midpoints of each edge for reliability
+  const xs = [px, px + pw - 1, px + pw / 2];
+  const ys = [py, py + ph - 1, py + ph / 2];
+  for (const x of xs)
+    for (const y of ys)
+      if (isSolid(Math.floor(x / TILE), Math.floor(y / TILE))) return true;
+  return false;
+}
+
+/* ============================================================
+   INTERACTABLES
+   ============================================================ */
+
 const INTERACTABLES = [
-  { id:'obj_cam',     type:'evidence', evidenceId:'camera',  tx:14, ty:3,  label:'E - Examine Camera',       radius:72 },
-  { id:'obj_kc',      type:'evidence', evidenceId:'keycard', tx:19, ty:8,  label:'E - Check Keycard Log',    radius:72 },
-  { id:'obj_pc',      type:'evidence', evidenceId:'email',   tx:32, ty:8,  label:'E - Check Computer',       radius:72 },
-  { id:'obj_door',    type:'evidence', evidenceId:'lock',    tx:8,  ty:13, label:'E - Inspect Door Lock',    radius:72 },
-  { id:'npc_alex',    type:'npc',      suspectId:'alex',    tx:6,  ty:5,  label:'E - Talk to Alex',         radius:72, color:COLORS.npc[0] },
-  { id:'npc_maya',    type:'npc',      suspectId:'maya',    tx:22, ty:5,  label:'E - Talk to Maya',         radius:72, color:COLORS.npc[1] },
-  { id:'npc_daniel',  type:'npc',      suspectId:'daniel',  tx:34, ty:5,  label:'E - Talk to Daniel',       radius:72, color:COLORS.npc[2] },
-  { id:'npc_sarah',   type:'npc',      suspectId:'sarah',   tx:14, ty:18, label:'E - Talk to Sarah',        radius:72, color:COLORS.npc[3] }
+  // Evidence objects
+  { id:'obj_cam',  type:'evidence', evidenceId:'camera',  tx:13, ty:2,  label:'E \u2014 Examine Camera',    radius:68 },
+  { id:'obj_kc',   type:'evidence', evidenceId:'keycard', tx:16, ty:6,  label:'E \u2014 Check Keycard Log', radius:68 },
+  { id:'obj_pc',   type:'evidence', evidenceId:'email',   tx:31, ty:6,  label:'E \u2014 Check Computer',    radius:68 },
+  { id:'obj_door', type:'evidence', evidenceId:'lock',    tx:7,  ty:12, label:'E \u2014 Inspect Door Lock', radius:68 },
+  // NPC suspects
+  { id:'npc_alex',   type:'npc', suspectId:'alex',   tx:5,  ty:6,  label:'E \u2014 Talk to Alex',    radius:68, npcColor:'#7a5f38' },
+  { id:'npc_maya',   type:'npc', suspectId:'maya',   tx:20, ty:4,  label:'E \u2014 Talk to Maya',    radius:68, npcColor:'#3a5a6a' },
+  { id:'npc_daniel', type:'npc', suspectId:'daniel', tx:30, ty:9,  label:'E \u2014 Talk to Daniel',  radius:68, npcColor:'#3a5a3a' },
+  { id:'npc_sarah',  type:'npc', suspectId:'sarah',  tx:12, ty:17, label:'E \u2014 Talk to Sarah',   radius:68, npcColor:'#5a3a4a' }
 ];
 
-/* =============================================
-   2D LAB - GAME STATE
-   ============================================= */
+/* ============================================================
+   GAME STATE
+   ============================================================ */
 
 const gameState = {
   collectedEvidence: [],
   interactedObjects: new Set(),
-  dialogueOpen: false,
-  journalOpen: false,
-  nearObject: null,
-  loopId: null
+  dialogueOpen:  false,
+  journalOpen:   false,
+  nearObject:    null,
+  loopId:        null,
+  lastTime:      0     // for delta-time
 };
 
-const player = { x: 8*TILE, y:10*TILE, w:18, h:18, speed:3, dir:'down', moving:false, animFrame:0, animTimer:0 };
-const keys = {};
-let canvas, ctx;
+/* ============================================================
+   PLAYER STATE
+   ============================================================ */
 
-/* =============================================
-   2D LAB - INPUT
-   ============================================= */
+const player = {
+  // Start in main lab open area
+  x: 5 * TILE,
+  y: 7 * TILE,
+  w: 22,
+  h: 24,
+  vx: 0,
+  vy: 0,
+  dir:       'down',   // 'up' | 'down' | 'left' | 'right'
+  moving:    false,
+  // Walk animation
+  animStep:  0,        // 0-3 walk cycle index
+  animTimer: 0         // accumulates delta time (ms)
+};
+
+/* ============================================================
+   CAMERA STATE  (smoothed)
+   ============================================================ */
+
+const cam = {
+  x: 0,
+  y: 0,
+  // lerp factor per second — higher = snappier
+  lerpSpeed: 8
+};
+
+/* ============================================================
+   INPUT
+   ============================================================ */
+
+const keys = {};
 
 function onKeyDown(e) {
   keys[e.code] = true;
   if (['ArrowUp','ArrowDown','ArrowLeft','ArrowRight','Space'].includes(e.code)) e.preventDefault();
+
   if (e.code === 'KeyE') {
     if (gameState.dialogueOpen) { closeDialogue(); return; }
-    if (gameState.nearObject) triggerInteraction(gameState.nearObject);
+    if (gameState.nearObject && !gameState.journalOpen) triggerInteraction(gameState.nearObject);
   }
   if (e.code === 'KeyJ') {
     if (gameState.dialogueOpen) return;
@@ -237,257 +420,580 @@ function onKeyDown(e) {
     if (!gameState.dialogueOpen && !gameState.journalOpen) navigateTo('dashboard');
   }
 }
+
 function onKeyUp(e) { keys[e.code] = false; }
 
-/* =============================================
-   2D LAB - COLLISION
-   ============================================= */
+/* ============================================================
+   MOVEMENT  (delta-time based, diagonal normalised)
+   ============================================================ */
 
-function overlaps(ax,ay,aw,ah, bx,by,bw,bh) {
-  return ax < bx+bw && ax+aw > bx && ay < by+bh && ay+ah > by;
-}
+function updatePlayer(dt) {
+  if (gameState.dialogueOpen || gameState.journalOpen) {
+    player.moving = false;
+    player.vx = 0; player.vy = 0;
+    return;
+  }
 
-function wouldCollide(nx, ny) {
-  const pw = player.w, ph = player.h;
-  for (const [c,r,w,h] of WALLS)
-    if (overlaps(nx,ny,pw,ph, c*TILE,r*TILE,w*TILE,h*TILE)) return true;
-  for (const [c,r,w,h] of FURNITURE)
-    if (overlaps(nx,ny,pw,ph, c*TILE,r*TILE,w*TILE,h*TILE)) return true;
-  if (nx < 0 || ny < 0 || nx+pw > MAP_W || ny+ph > MAP_H) return true;
-  return false;
-}
-
-/* =============================================
-   2D LAB - UPDATE
-   ============================================= */
-
-function updatePlayer() {
-  if (gameState.dialogueOpen || gameState.journalOpen) return;
   let dx = 0, dy = 0;
-  if (keys['KeyW'] || keys['ArrowUp'])    dy = -player.speed;
-  if (keys['KeyS'] || keys['ArrowDown'])  dy =  player.speed;
-  if (keys['KeyA'] || keys['ArrowLeft'])  dx = -player.speed;
-  if (keys['KeyD'] || keys['ArrowRight']) dx =  player.speed;
-  if (dx && dy) { dx *= 0.707; dy *= 0.707; }
-  player.moving = (dx !== 0 || dy !== 0);
-  if (dx) { player.dir = dx > 0 ? 'right' : 'left'; if (!wouldCollide(player.x+dx, player.y)) player.x += dx; }
-  if (dy) { player.dir = dy > 0 ? 'down'  : 'up';   if (!wouldCollide(player.x, player.y+dy)) player.y += dy; }
-  if (player.moving) { player.animTimer++; if (player.animTimer >= 10) { player.animTimer=0; player.animFrame=(player.animFrame+1)%4; } }
-  else player.animFrame = 0;
+  if (keys['KeyW'] || keys['ArrowUp'])    dy = -1;
+  if (keys['KeyS'] || keys['ArrowDown'])  dy =  1;
+  if (keys['KeyA'] || keys['ArrowLeft'])  dx = -1;
+  if (keys['KeyD'] || keys['ArrowRight']) dx =  1;
 
-  // Proximity check
-  const pcx = player.x + player.w/2, pcy = player.y + player.h/2;
+  // Normalise diagonal
+  if (dx !== 0 && dy !== 0) { dx *= 0.7071; dy *= 0.7071; }
+
+  const speed = PLAYER_SPEED * dt;   // pixels this frame
+  player.vx = dx * speed;
+  player.vy = dy * speed;
+  player.moving = (dx !== 0 || dy !== 0);
+
+  // Direction — prefer the dominant axis
+  if (Math.abs(dy) >= Math.abs(dx)) {
+    if (dy < 0) player.dir = 'up';
+    else if (dy > 0) player.dir = 'down';
+  } else {
+    if (dx < 0) player.dir = 'left';
+    else if (dx > 0) player.dir = 'right';
+  }
+
+  // Move X then Y separately so we slide along walls
+  const nx = player.x + player.vx;
+  if (!wouldCollide(nx, player.y)) {
+    player.x = nx;
+  }
+  const ny = player.y + player.vy;
+  if (!wouldCollide(player.x, ny)) {
+    player.y = ny;
+  }
+
+  // Walk animation — advance every 120 ms when moving
+  if (player.moving) {
+    player.animTimer += dt * 1000;
+    if (player.animTimer >= 120) {
+      player.animTimer = 0;
+      player.animStep = (player.animStep + 1) % 4;
+    }
+  } else {
+    player.animStep  = 0;
+    player.animTimer = 0;
+  }
+
+  // Proximity to interactables
+  const pcx = player.x + player.w / 2;
+  const pcy = player.y + player.h / 2;
   let nearest = null, nearDist = Infinity;
   for (const obj of INTERACTABLES) {
-    const ox = obj.tx*TILE+TILE/2, oy = obj.ty*TILE+TILE/2;
-    const d = Math.hypot(pcx-ox, pcy-oy);
+    const ox = obj.tx * TILE + TILE / 2;
+    const oy = obj.ty * TILE + TILE / 2;
+    const d  = Math.hypot(pcx - ox, pcy - oy);
     if (d < obj.radius && d < nearDist) { nearDist = d; nearest = obj; }
   }
   gameState.nearObject = nearest;
 }
 
-/* =============================================
-   2D LAB - RENDER
-   ============================================= */
+/* ============================================================
+   CAMERA UPDATE  (smooth follow)
+   ============================================================ */
 
-function getCamera() {
+function updateCamera(dt) {
+  if (!canvas) return;
   const vw = canvas.width, vh = canvas.height;
-  const cx = Math.max(0, Math.min(MAP_W-vw, player.x+player.w/2 - vw/2));
-  const cy = Math.max(0, Math.min(MAP_H-vh, player.y+player.h/2 - vh/2));
-  return { cx, cy };
+
+  // Target: player centred in viewport
+  const targetX = player.x + player.w / 2 - vw / 2;
+  const targetY = player.y + player.h / 2 - vh / 2;
+
+  // Clamp to map
+  const clampedX = Math.max(0, Math.min(MAP_W - vw, targetX));
+  const clampedY = Math.max(0, Math.min(MAP_H - vh, targetY));
+
+  // Exponential lerp — feels smooth, no jitter
+  const alpha = 1 - Math.exp(-cam.lerpSpeed * dt);
+  cam.x += (clampedX - cam.x) * alpha;
+  cam.y += (clampedY - cam.y) * alpha;
+
+  // Sub-pixel snap when very close to avoid floating-point drift
+  if (Math.abs(cam.x - clampedX) < 0.1) cam.x = clampedX;
+  if (Math.abs(cam.y - clampedY) < 0.1) cam.y = clampedY;
 }
 
-function drawMap(cx, cy) {
-  // Floor base
-  ctx.fillStyle = COLORS.floorA;
+/* ============================================================
+   RENDERING
+   ============================================================ */
+
+let canvas, ctx;
+
+/* ---- Helpers ---- */
+function hex2rgb(hex) {
+  const n = parseInt(hex.replace('#',''), 16);
+  return [(n>>16)&255, (n>>8)&255, n&255];
+}
+function lighten(hex, amt) {
+  const [r,g,b] = hex2rgb(hex);
+  return `rgb(${Math.min(255,r+amt)},${Math.min(255,g+amt)},${Math.min(255,b+amt)})`;
+}
+function darken(hex, amt) { return lighten(hex, -amt); }
+
+/* ---- Floor ---- */
+function drawFloors() {
+  // Outside-rooms void
+  ctx.fillStyle = C.outerBg;
   ctx.fillRect(0, 0, MAP_W, MAP_H);
 
-  // Room floors
-  const rooms = [
-    { x:2,y:2,w:14,h:12, c:'#0f1218' }, { x:18,y:2,w:10,h:8,c:'#0c0f1a' },
-    { x:30,y:2,w:8,h:12, c:'#0f1218' }, { x:2,y:16,w:8,h:10,c:'#0b0d10' },
-    { x:10,y:16,w:20,h:4,c:'#0d1015' },{ x:30,y:16,w:8,h:10,c:'#0f1218' }
-  ];
-  for (const r of rooms) { ctx.fillStyle = r.c; ctx.fillRect(r.x*TILE,r.y*TILE,r.w*TILE,r.h*TILE); }
+  // Room fills
+  for (const [, rm] of Object.entries(ROOMS)) {
+    ctx.fillStyle = rm.color;
+    ctx.fillRect(rm.x*TILE, rm.y*TILE, rm.w*TILE, rm.h*TILE);
+  }
 
-  // Floor grid
-  ctx.strokeStyle = 'rgba(255,255,255,0.025)';
+  // Subtle tile grid — only inside rooms, clipped
+  ctx.strokeStyle = C.floorTile;
   ctx.lineWidth = 0.5;
-  for (let c=0;c<COLS;c++) for (let r=0;r<ROWS;r++) ctx.strokeRect(c*TILE,r*TILE,TILE,TILE);
-
-  // Walls
-  for (const [c,r,w,h] of WALLS) {
-    ctx.fillStyle = COLORS.wall; ctx.fillRect(c*TILE,r*TILE,w*TILE,h*TILE);
-    ctx.fillStyle = COLORS.wallTop; ctx.fillRect(c*TILE,r*TILE,w*TILE,4);
+  for (const [, rm] of Object.entries(ROOMS)) {
+    for (let r = rm.y; r < rm.y + rm.h; r++) {
+      for (let c = rm.x; c < rm.x + rm.w; c++) {
+        ctx.strokeRect(c*TILE, r*TILE, TILE, TILE);
+      }
+    }
   }
-
-  // Furniture
-  for (const [c,r,w,h] of FURNITURE) {
-    const px=c*TILE,py=r*TILE,pw=w*TILE,ph=h*TILE;
-    ctx.fillStyle=COLORS.desk; ctx.fillRect(px,py,pw,ph);
-    ctx.fillStyle=COLORS.deskTop; ctx.fillRect(px+2,py+2,pw-4,5);
-  }
-
-  // Computers
-  const pcPositions = [[3,3],[7,3],[10,3],[10,7],[19,3],[23,3],[31,3],[31,7],[31,17]];
-  for (const [c,r] of pcPositions) {
-    const px=c*TILE+4,py=r*TILE+4;
-    ctx.fillStyle=COLORS.computer; ctx.fillRect(px,py,20,14);
-    ctx.fillStyle=COLORS.screen; ctx.fillRect(px+2,py+2,16,9);
-    ctx.fillStyle='rgba(80,160,255,0.25)'; ctx.fillRect(px+2,py+2,16,2);
-  }
-
-  // Security camera
-  const cam = INTERACTABLES.find(o=>o.id==='obj_cam');
-  if (cam) {
-    const cx2=cam.tx*TILE+TILE/2, cy2=cam.ty*TILE+TILE/2;
-    ctx.fillStyle=COLORS.camBody; ctx.fillRect(cx2-12,cy2-6,24,12);
-    ctx.fillStyle=COLORS.camLight; ctx.beginPath(); ctx.arc(cx2+10,cy2,4,0,Math.PI*2); ctx.fill();
-  }
-
-  // Keypad
-  const kc = INTERACTABLES.find(o=>o.id==='obj_kc');
-  if (kc) {
-    ctx.fillStyle=COLORS.keypad; ctx.fillRect(kc.tx*TILE+4,kc.ty*TILE+4,20,28);
-    ctx.fillStyle=COLORS.keypadLight; ctx.fillRect(kc.tx*TILE+8,kc.ty*TILE+8,12,6);
-  }
-
-  // Door marker
-  const door = INTERACTABLES.find(o=>o.id==='obj_door');
-  if (door) {
-    const dx=door.tx*TILE;
-    ctx.fillStyle=COLORS.door; ctx.fillRect(dx,door.ty*TILE-4,TILE,8);
-    ctx.fillStyle=COLORS.doorFrame; ctx.fillRect(dx,door.ty*TILE-4,TILE,2); ctx.fillRect(dx,door.ty*TILE+2,TILE,2);
-  }
-
-  // Lab equipment
-  for (const [c,r] of [[31,10],[35,10]]) {
-    ctx.fillStyle=COLORS.labEq; ctx.fillRect(c*TILE+2,r*TILE+6,28,22);
-    ctx.fillStyle=COLORS.labLight; ctx.fillRect(c*TILE+6,r*TILE+10,8,4);
-  }
-
-  // Room labels
-  ctx.textAlign='center'; ctx.textBaseline='middle'; ctx.font='bold 10px Arial,sans-serif';
-  ctx.fillStyle='rgba(200,169,110,0.35)';
-  const labels=[
-    ['MAIN LABORATORY',(2+7)*TILE,(2+0.7)*TILE], ['SECURITY ROOM',(18+5)*TILE,(2+0.7)*TILE],
-    ['RESEARCH ROOM',(30+4)*TILE,(2+0.7)*TILE],  ['STORAGE',(2+4)*TILE,(16+0.7)*TILE],
-    ['CORRIDOR',(10+10)*TILE,(16+2)*TILE],        ['OFFICE',(30+4)*TILE,(16+0.7)*TILE]
-  ];
-  for (const [name,lx,ly] of labels) ctx.fillText(name,lx,ly);
-  ctx.textAlign='left'; ctx.textBaseline='alphabetic';
 }
 
-function drawNPCs() {
-  for (const obj of INTERACTABLES.filter(o=>o.type==='npc')) {
-    const ox=obj.tx*TILE+TILE/2, oy=obj.ty*TILE+TILE/2;
+/* ---- Walls ---- */
+function drawWalls() {
+  // Draw each solid tile from the collision map
+  // Group adjacent horizontal runs for fewer fillRect calls
+  for (let r = 0; r < ROWS; r++) {
+    let runStart = -1;
+    for (let c = 0; c <= COLS; c++) {
+      const solid = c < COLS && CMAP[r * COLS + c] === 1;
+      if (solid && runStart === -1) { runStart = c; }
+      else if (!solid && runStart !== -1) {
+        const wx = runStart * TILE, wy = r * TILE;
+        const ww  = (c - runStart) * TILE;
+        // Wall body
+        ctx.fillStyle = C.wallBase;
+        ctx.fillRect(wx, wy, ww, TILE);
+        // Top highlight
+        ctx.fillStyle = C.wallFace;
+        ctx.fillRect(wx, wy, ww, 5);
+        // Bottom shadow
+        ctx.fillStyle = C.wallShadow;
+        ctx.fillRect(wx, wy + TILE - 3, ww, 3);
+        runStart = -1;
+      }
+    }
+  }
+}
+
+/* ---- Door openings ---- */
+function drawDoors() {
+  for (const [dc, dr] of DOOR_TILES) {
+    const dx = dc * TILE, dy = dr * TILE;
+    // Dark floor colour in the opening
+    ctx.fillStyle = C.doorOpen;
+    ctx.fillRect(dx, dy, TILE, TILE);
+    // Thin gold frame strips on the sides
+    ctx.fillStyle = C.doorFrame;
+    ctx.fillRect(dx,          dy, 3, TILE);
+    ctx.fillRect(dx+TILE-3,   dy, 3, TILE);
+  }
+}
+
+/* ---- Furniture ---- */
+function drawFurniture() {
+  for (const [fc, fr, fw, fh] of FURNITURE_RECTS) {
+    const fx = fc*TILE, fy = fr*TILE, fwp = fw*TILE, fhp = fh*TILE;
     // Body
-    ctx.fillStyle=obj.color; ctx.fillRect(ox-9,oy-8,18,20);
-    // Head
-    ctx.fillStyle=shiftColor(obj.color,25); ctx.beginPath(); ctx.arc(ox,oy-14,9,0,Math.PI*2); ctx.fill();
-    // Name
-    ctx.font='600 9px Arial'; ctx.textAlign='center'; ctx.textBaseline='top';
-    ctx.fillStyle='rgba(232,228,220,0.75)';
-    ctx.fillText(obj.suspectId ? suspects.find(s=>s.id===obj.suspectId)?.name || '' : '', ox, oy+14);
-    ctx.textAlign='left'; ctx.textBaseline='alphabetic';
-    // Highlight ring
-    if (gameState.nearObject?.id===obj.id) {
-      ctx.strokeStyle='rgba(200,169,110,0.7)'; ctx.lineWidth=2;
-      ctx.beginPath(); ctx.arc(ox,oy-4,17,0,Math.PI*2); ctx.stroke();
-    }
+    ctx.fillStyle = C.deskBody;
+    ctx.fillRect(fx, fy, fwp, fhp);
+    // Surface highlight
+    ctx.fillStyle = C.deskSurf;
+    ctx.fillRect(fx+2, fy+2, fwp-4, 7);
+    // Front edge
+    ctx.fillStyle = C.deskEdge;
+    ctx.fillRect(fx, fy+fhp-4, fwp, 4);
   }
 }
 
-function drawEvidenceHighlights() {
-  for (const obj of INTERACTABLES.filter(o=>o.type==='evidence')) {
-    const ox=obj.tx*TILE+TILE/2, oy=obj.ty*TILE+TILE/2;
-    const collected=gameState.collectedEvidence.includes(obj.evidenceId);
-    if (gameState.nearObject?.id===obj.id) {
-      ctx.strokeStyle=collected?'rgba(80,180,80,0.6)':'rgba(200,169,110,0.8)';
-      ctx.lineWidth=2; ctx.beginPath(); ctx.arc(ox,oy,19,0,Math.PI*2); ctx.stroke();
-    }
+/* ---- Computers ---- */
+function drawComputers() {
+  // Positions: [col, row]
+  const pcPos = [
+    // Main Lab
+    [2,3],[5,3],[2,5],[5,5],[2,8],[5,8],[8,3],[8,6],[8,9],[10,3],[10,6],
+    // Security
+    [17,2],[19,2],[21,2],[23,2],
+    // Research
+    [28,2],[30,2],[28,5],[30,5],[28,8],[30,8],
+    // Office
+    [28,15],[30,15],[28,18]
+  ];
+  for (const [c, r] of pcPos) {
+    const px = c*TILE+4, py = r*TILE+6;
+    // Case
+    ctx.fillStyle = C.pcCase;
+    ctx.fillRect(px, py, 24, 18);
+    // Screen
+    ctx.fillStyle = C.pcScreen;
+    ctx.fillRect(px+3, py+3, 18, 11);
+    // Screen glow top strip
+    ctx.fillStyle = C.pcGlow;
+    ctx.fillRect(px+3, py+3, 18, 3);
+    // Small status LED
+    ctx.fillStyle = '#00b858';
+    ctx.fillRect(px+1, py+1, 3, 3);
+  }
+}
+
+/* ---- Security equipment ---- */
+function drawSecurityEquipment() {
+  // Camera unit — top-right corner of Main Lab
+  const cam0 = INTERACTABLES.find(o => o.id === 'obj_cam');
+  if (cam0) {
+    const cx = cam0.tx*TILE + TILE/2, cy = cam0.ty*TILE + TILE/2;
+    // Housing
+    ctx.fillStyle = C.camBody;
+    ctx.fillRect(cx-14, cy-7, 28, 14);
+    // Lens
+    ctx.fillStyle = C.camLens;
+    ctx.beginPath(); ctx.arc(cx+9, cy, 5, 0, Math.PI*2); ctx.fill();
+    // Red LED
+    ctx.fillStyle = C.camRed;
+    ctx.beginPath(); ctx.arc(cx-10, cy-3, 3, 0, Math.PI*2); ctx.fill();
+    // Bracket
+    ctx.fillStyle = C.camBody;
+    ctx.fillRect(cx-3, cy-14, 6, 8);
+  }
+
+  // Keycard reader — on Security Room wall
+  const kc = INTERACTABLES.find(o => o.id === 'obj_kc');
+  if (kc) {
+    const kx = kc.tx*TILE+8, ky = kc.ty*TILE+6;
+    ctx.fillStyle = C.keypadBody;
+    ctx.fillRect(kx, ky, 22, 32);
+    // Lit panel
+    ctx.fillStyle = C.keypadLit;
+    ctx.fillRect(kx+4, ky+4, 14, 8);
+    // Small dots (buttons)
+    ctx.fillStyle = 'rgba(255,255,255,0.3)';
+    for (let row = 0; row < 3; row++)
+      for (let col = 0; col < 3; col++)
+        ctx.fillRect(kx+5+col*5, ky+16+row*4, 3, 3);
+  }
+}
+
+/* ---- Lab equipment ---- */
+function drawLabEquipment() {
+  // Benchtop instruments in Research Room
+  const positions = [[29,4],[32,4],[29,7],[32,7],[29,10],[32,10]];
+  for (const [c, r] of positions) {
+    const ex = c*TILE+4, ey = r*TILE+8;
+    ctx.fillStyle = C.labEquip;
+    ctx.fillRect(ex, ey, 30, 20);
+    ctx.fillStyle = C.labBlue;
+    ctx.fillRect(ex+4, ey+4, 10, 6);
+    ctx.fillStyle = 'rgba(40,180,255,0.2)';
+    ctx.fillRect(ex+4, ey+4, 10, 2);
+  }
+
+  // Server rack in Security Room
+  const sx = 22*TILE+4, sy = 4*TILE+4;
+  ctx.fillStyle = C.serverA;
+  ctx.fillRect(sx, sy, 36, 76);
+  for (let i = 0; i < 5; i++) {
+    ctx.fillStyle = C.serverB;
+    ctx.fillRect(sx+3, sy+4+i*14, 30, 10);
+    ctx.fillStyle = C.serverLED;
+    ctx.fillRect(sx+5, sy+8+i*14, 4, 3);
+  }
+
+  // Storage shelving labels
+  const shelfPositions = [[2,15],[2,17],[2,19],[2,21]];
+  for (const [c, r] of shelfPositions) {
+    const sx2 = c*TILE+2, sy2 = r*TILE+2;
+    ctx.fillStyle = C.cabinetA;
+    ctx.fillRect(sx2, sy2, TILE*4, TILE-4);
+    // Shelf dividers
+    ctx.fillStyle = C.cabinetB;
+    for (let i = 1; i < 4; i++) ctx.fillRect(sx2 + i*TILE-1, sy2, 2, TILE-4);
+  }
+}
+
+/* ---- Door lock (evidence object marker) ---- */
+function drawDoorLock() {
+  const door = INTERACTABLES.find(o => o.id === 'obj_door');
+  if (!door) return;
+  const dx = door.tx*TILE, dy = door.ty*TILE;
+  ctx.fillStyle = C.doorOpen;
+  ctx.fillRect(dx, dy-6, TILE, 12);
+  ctx.fillStyle = C.doorFrame;
+  ctx.fillRect(dx, dy-6, TILE, 3);
+  ctx.fillRect(dx, dy+3,  TILE, 3);
+  // Lock icon (small rectangle + circle)
+  const lx = dx + TILE/2 - 5, ly = dy - 2;
+  ctx.fillStyle = '#c8a050';
+  ctx.fillRect(lx, ly, 10, 8);
+  ctx.fillStyle = C.floorMain;
+  ctx.beginPath(); ctx.arc(lx+5, ly+3, 2.5, 0, Math.PI*2); ctx.fill();
+}
+
+/* ---- Room labels ---- */
+function drawRoomLabels() {
+  ctx.font = 'bold 9px "Helvetica Neue", Arial, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'top';
+  ctx.fillStyle = 'rgba(200,169,110,0.30)';
+  const labels = [
+    ['MAIN LABORATORY',  (1 + 13/2)*TILE, (1+0.6)*TILE ],
+    ['SECURITY ROOM',    (16 + 9/2)*TILE, (1+0.6)*TILE ],
+    ['RESEARCH ROOM',    (27 + 8/2)*TILE, (1+0.6)*TILE ],
+    ['STORAGE AREA',     (1 + 7/2)*TILE,  (14+0.6)*TILE],
+    ['CORRIDOR',         (8 + 19/2)*TILE, (14+0.6)*TILE],
+    ['OFFICE',           (27 + 8/2)*TILE, (14+0.6)*TILE]
+  ];
+  for (const [name, lx, ly] of labels) ctx.fillText(name, lx, ly);
+  ctx.textAlign   = 'left';
+  ctx.textBaseline = 'alphabetic';
+}
+
+/* ---- Evidence object highlights ---- */
+function drawEvidenceMarkers() {
+  const t = performance.now();
+  for (const obj of INTERACTABLES.filter(o => o.type === 'evidence')) {
+    const ox = obj.tx*TILE + TILE/2;
+    const oy = obj.ty*TILE + TILE/2;
+    const collected = gameState.collectedEvidence.includes(obj.evidenceId);
+    const isNearest = gameState.nearObject?.id === obj.id;
+
     if (collected) {
-      ctx.fillStyle='rgba(60,140,60,0.2)'; ctx.beginPath(); ctx.arc(ox,oy,12,0,Math.PI*2); ctx.fill();
+      // Subtle green tint — already examined
+      ctx.fillStyle = 'rgba(50,140,60,0.18)';
+      ctx.beginPath(); ctx.arc(ox, oy, 14, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = 'rgba(60,180,70,0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(ox, oy, 14, 0, Math.PI*2); ctx.stroke();
     } else {
-      ctx.fillStyle='rgba(200,169,110,0.15)'; ctx.beginPath(); ctx.arc(ox,oy,8,0,Math.PI*2); ctx.fill();
+      // Pulsing gold dot — undiscovered
+      const pulse = 0.6 + 0.4 * Math.sin(t / 700);
+      ctx.fillStyle = `rgba(200,169,110,${0.12 * pulse})`;
+      ctx.beginPath(); ctx.arc(ox, oy, 12, 0, Math.PI*2); ctx.fill();
+      ctx.strokeStyle = `rgba(200,169,110,${0.5 * pulse})`;
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.arc(ox, oy, 12, 0, Math.PI*2); ctx.stroke();
+    }
+
+    // Hover ring when player is near
+    if (isNearest) {
+      ctx.strokeStyle = collected ? 'rgba(80,200,90,0.8)' : 'rgba(220,185,100,0.9)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(ox, oy, 20, 0, Math.PI*2); ctx.stroke();
     }
   }
 }
 
+/* ---- NPCs ---- */
+function drawNPCs() {
+  for (const obj of INTERACTABLES.filter(o => o.type === 'npc')) {
+    const nx = obj.tx*TILE + TILE/2;
+    const ny = obj.ty*TILE + TILE/2;
+    const isNearest = gameState.nearObject?.id === obj.id;
+    const suspect = suspects.find(s => s.id === obj.suspectId);
+
+    // Shadow
+    ctx.fillStyle = 'rgba(0,0,0,0.3)';
+    ctx.beginPath(); ctx.ellipse(nx, ny+14, 10, 4, 0, 0, Math.PI*2); ctx.fill();
+
+    // Body (coat)
+    ctx.fillStyle = darken(obj.npcColor, 10);
+    ctx.fillRect(nx-10, ny-6, 20, 20);
+    // Coat lapel
+    ctx.fillStyle = lighten(obj.npcColor, 15);
+    ctx.fillRect(nx-4, ny-6, 8, 6);
+
+    // Head
+    ctx.fillStyle = C.npcSkin;
+    ctx.beginPath(); ctx.arc(nx, ny-14, 9, 0, Math.PI*2); ctx.fill();
+    // Hair
+    ctx.fillStyle = darken(obj.npcColor, 20);
+    ctx.fillRect(nx-9, ny-22, 18, 9);
+
+    // Name tag
+    if (suspect) {
+      ctx.font = '600 8px "Helvetica Neue", Arial';
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      ctx.fillStyle = 'rgba(232,228,220,0.8)';
+      ctx.fillText(suspect.name, nx, ny+16);
+      ctx.textAlign = 'left';
+      ctx.textBaseline = 'alphabetic';
+    }
+
+    // Proximity ring
+    if (isNearest) {
+      ctx.strokeStyle = 'rgba(200,169,110,0.75)';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.arc(nx, ny, 22, 0, Math.PI*2); ctx.stroke();
+    }
+  }
+}
+
+/* ---- Player ---- */
 function drawPlayer() {
-  const px=player.x, py=player.y, pw=player.w, ph=player.h;
-  // Shadow
-  ctx.fillStyle='rgba(0,0,0,0.35)';
-  ctx.beginPath(); ctx.ellipse(px+pw/2,py+ph+2,pw/2,3,0,0,Math.PI*2); ctx.fill();
-  // Body coat
-  ctx.fillStyle='#28303e'; ctx.fillRect(px+2,py+7,pw-4,ph-7);
-  ctx.fillStyle='#343c4a'; ctx.fillRect(px+pw/2-3,py+7,6,5);
-  // Head
-  ctx.fillStyle='#c0906a'; ctx.beginPath(); ctx.arc(px+pw/2,py+5,6,0,Math.PI*2); ctx.fill();
-  // Hat brim + crown
-  ctx.fillStyle='#181820'; ctx.fillRect(px+1,py-1,pw-2,4); ctx.fillRect(px+4,py-6,pw-8,6);
-  // Legs
-  const lo = player.moving ? Math.sin(player.animFrame*Math.PI/2)*3 : 0;
-  ctx.fillStyle='#181820';
-  ctx.fillRect(px+3,py+ph-5,5,5+lo); ctx.fillRect(px+pw-8,py+ph-5,5,5-lo);
+  const px = player.x;
+  const py = player.y;
+  const pw = player.w;
+  const ph = player.h;
+  const cx = px + pw/2;
+  const dir = player.dir;
+
+  // Walk cycle leg offsets  (L, R leg extension)
+  const walkCycle = [0, 3, 0, -3];
+  const legSwing  = player.moving ? walkCycle[player.animStep] : 0;
+
+  // --- Ground shadow ---
+  ctx.fillStyle = 'rgba(0,0,0,0.4)';
+  ctx.beginPath(); ctx.ellipse(cx, py+ph+1, pw/2-1, 3, 0, 0, Math.PI*2); ctx.fill();
+
+  // --- Legs ---
+  ctx.fillStyle = '#181820';
+  if (dir === 'left' || dir === 'right' || dir === 'down') {
+    ctx.fillRect(cx-9, py+ph-8, 7, 8 + legSwing);    // left leg
+    ctx.fillRect(cx+2,  py+ph-8, 7, 8 - legSwing);   // right leg
+  } else {
+    // Facing up — show backs of legs
+    ctx.fillRect(cx-8, py+ph-7, 6, 7 + legSwing);
+    ctx.fillRect(cx+2, py+ph-7, 6, 7 - legSwing);
+  }
+
+  // --- Coat body ---
+  ctx.fillStyle = '#232b38';
+  ctx.fillRect(px+3, py+8, pw-6, ph-10);
+  // Coat outline / shadow
+  ctx.strokeStyle = '#141820';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(px+3, py+8, pw-6, ph-10);
+
+  // --- Coat lapels / front ---
+  ctx.fillStyle = '#2e3848';
+  ctx.beginPath();
+  ctx.moveTo(cx-3, py+8);
+  ctx.lineTo(cx,   py+13);
+  ctx.lineTo(cx+3, py+8);
+  ctx.closePath();
+  ctx.fill();
+
+  // --- Belt ---
+  ctx.fillStyle = '#c8a050';
+  ctx.fillRect(px+3, py+ph-12, pw-6, 3);
+
+  // --- Head ---
+  ctx.fillStyle = '#c09060';
+  ctx.beginPath(); ctx.arc(cx, py+5, 8, 0, Math.PI*2); ctx.fill();
+  // Head outline
+  ctx.strokeStyle = '#8a6040';
+  ctx.lineWidth = 1;
+  ctx.beginPath(); ctx.arc(cx, py+5, 8, 0, Math.PI*2); ctx.stroke();
+
+  // --- Hat brim ---
+  ctx.fillStyle = '#14141c';
+  ctx.fillRect(px-1, py-1, pw+2, 4);
+  // Hat crown
+  ctx.fillStyle = '#1c1c28';
+  ctx.fillRect(px+3, py-7, pw-6, 7);
+  // Hat band
+  ctx.fillStyle = '#c8a050';
+  ctx.fillRect(px+3, py-2, pw-6, 2);
+
+  // --- Direction indicator (subtle eye/face direction) ---
+  ctx.fillStyle = '#5a3020';
+  if (dir === 'down' || dir === 'right') {
+    ctx.fillRect(cx+1, py+4, 3, 3);   // eye right
+  }
+  if (dir === 'down' || dir === 'left') {
+    ctx.fillRect(cx-4, py+4, 3, 3);   // eye left
+  }
+  // Up: eyes on top of head (just dots)
+  if (dir === 'up') {
+    ctx.fillRect(cx-3, py+2, 2, 2);
+    ctx.fillRect(cx+1, py+2, 2, 2);
+  }
 }
 
-function shiftColor(hex, amt) {
-  const n=parseInt(hex.replace('#',''),16);
-  const r=Math.min(255,(n>>16)+amt), g=Math.min(255,((n>>8)&0xff)+amt), b=Math.min(255,(n&0xff)+amt);
-  return `rgb(${r},${g},${b})`;
-}
-
+/* ---- Full frame ---- */
 function renderFrame() {
   if (!ctx) return;
-  // Resize canvas to match element
-  if (canvas.width !== canvas.offsetWidth || canvas.height !== canvas.offsetHeight) {
-    canvas.width = canvas.offsetWidth || window.innerWidth;
-    canvas.height = canvas.offsetHeight || window.innerHeight;
+
+  // Sync canvas resolution to element size
+  const cw = canvas.offsetWidth  || window.innerWidth;
+  const ch = canvas.offsetHeight || window.innerHeight;
+  if (canvas.width !== cw || canvas.height !== ch) {
+    canvas.width  = cw;
+    canvas.height = ch;
   }
-  const { cx, cy } = getCamera();
+
+  // Clear
+  ctx.fillStyle = C.outerBg;
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
   ctx.save();
-  ctx.translate(-cx, -cy);
-  drawMap(cx, cy);
-  drawEvidenceHighlights();
+  ctx.translate(-Math.round(cam.x), -Math.round(cam.y));
+
+  drawFloors();
+  drawWalls();
+  drawDoors();
+  drawFurniture();
+  drawComputers();
+  drawSecurityEquipment();
+  drawLabEquipment();
+  drawDoorLock();
+  drawRoomLabels();
+  drawEvidenceMarkers();
   drawNPCs();
   drawPlayer();
+
   ctx.restore();
 }
 
-/* =============================================
-   2D LAB - GAME LOOP
-   ============================================= */
+/* ============================================================
+   GAME LOOP  (delta-time)
+   ============================================================ */
 
-function gameLoop() {
-  updatePlayer();
+function gameLoop(timestamp) {
+  const dt = Math.min((timestamp - (gameState.lastTime || timestamp)) / 1000, 0.1);
+  gameState.lastTime = timestamp;
+
+  updatePlayer(dt);
+  updateCamera(dt);
   renderFrame();
   updateHUD();
   updatePrompt();
+
   gameState.loopId = requestAnimationFrame(gameLoop);
 }
 
 function stopGameLoop() {
-  if (gameState.loopId) { cancelAnimationFrame(gameState.loopId); gameState.loopId=null; }
+  if (gameState.loopId) { cancelAnimationFrame(gameState.loopId); gameState.loopId = null; }
   document.removeEventListener('keydown', onKeyDown);
   document.removeEventListener('keyup',   onKeyUp);
 }
 
-/* =============================================
-   2D LAB - HUD / PROMPT
-   ============================================= */
+/* ============================================================
+   HUD / PROMPT
+   ============================================================ */
 
 function updateHUD() {
   const prog = document.getElementById('hud-progress');
   const txt  = document.getElementById('hud-text');
-  if (!prog) return;
-  const n = gameState.collectedEvidence.length, total = evidence.length;
+  if (!prog || !txt) return;
+  const n = gameState.collectedEvidence.length;
+  const total = evidence.length;
   prog.textContent = n + ' / ' + total + ' clues discovered';
   if (n === total) {
-    txt.textContent = 'All clues found. Open Journal (J) to deduce.';
+    txt.textContent  = 'All clues found. Open Journal [J] to make your deduction.';
     prog.style.color = '#80c880';
   } else {
-    txt.textContent = 'Investigate the laboratory and find clues.';
+    txt.textContent  = 'Investigate the laboratory and collect evidence.';
     prog.style.color = '#c8a96e';
   }
 }
@@ -503,31 +1009,32 @@ function updatePrompt() {
   }
 }
 
-/* =============================================
-   2D LAB - INTERACTION
-   ============================================= */
+/* ============================================================
+   INTERACTION
+   ============================================================ */
 
 function triggerInteraction(obj) {
   if (obj.type === 'evidence') {
-    const ev = evidence.find(e=>e.id===obj.evidenceId);
+    const ev = evidence.find(e => e.id === obj.evidenceId);
     if (!ev) return;
-    if (!gameState.collectedEvidence.includes(ev.id)) gameState.collectedEvidence.push(ev.id);
+    if (!gameState.collectedEvidence.includes(ev.id))
+      gameState.collectedEvidence.push(ev.id);
     gameState.interactedObjects.add(obj.id);
     showDialogue('EVIDENCE FOUND', 'Physical Clue', ev.description);
   } else if (obj.type === 'npc') {
-    const s = suspects.find(s=>s.id===obj.suspectId);
+    const s = suspects.find(s => s.id === obj.suspectId);
     if (s) showDialogue(s.name, s.role, s.statement);
   }
 }
 
-/* =============================================
-   2D LAB - DIALOGUE
-   ============================================= */
+/* ============================================================
+   DIALOGUE
+   ============================================================ */
 
 function showDialogue(speaker, role, text) {
   document.getElementById('dialogue-speaker').textContent = speaker;
-  document.getElementById('dialogue-role').textContent = role;
-  document.getElementById('dialogue-text').textContent = text;
+  document.getElementById('dialogue-role').textContent    = role;
+  document.getElementById('dialogue-text').textContent    = text;
   document.getElementById('dialogue-panel').classList.remove('hidden');
   gameState.dialogueOpen = true;
 }
@@ -537,9 +1044,9 @@ function closeDialogue() {
   gameState.dialogueOpen = false;
 }
 
-/* =============================================
-   2D LAB - JOURNAL
-   ============================================= */
+/* ============================================================
+   JOURNAL
+   ============================================================ */
 
 function openJournal() {
   updateJournalContent();
@@ -552,58 +1059,90 @@ function closeJournal() {
   gameState.journalOpen = false;
 }
 
-function closeJournalAndDeduce() { closeJournal(); navigateTo('deduction'); }
-function closeJournalToDashboard() { closeJournal(); navigateTo('dashboard'); }
+function closeJournalAndDeduce()    { closeJournal(); navigateTo('deduction'); }
+function closeJournalToDashboard()  { closeJournal(); navigateTo('dashboard'); }
 
 function switchJournalTab(tabId, btn) {
-  document.querySelectorAll('.journal-content').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.journal-tab').forEach(el=>el.classList.remove('active'));
-  document.getElementById('journal-'+tabId).classList.add('active');
+  document.querySelectorAll('.journal-content').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.journal-tab').forEach(el => el.classList.remove('active'));
+  document.getElementById('journal-' + tabId).classList.add('active');
   btn.classList.add('active');
 }
 
 function updateJournalContent() {
-  // Evidence
   const evEl = document.getElementById('journal-evidence');
   evEl.innerHTML = gameState.collectedEvidence.length === 0
     ? '<p class="journal-empty">No evidence collected yet. Explore the lab.</p>'
     : gameState.collectedEvidence.map(id => {
-        const ev = evidence.find(e=>e.id===id);
-        return ev ? `<div class="journal-evidence-item"><div class="journal-evidence-title">${ev.title}</div><div class="journal-evidence-desc">${ev.description}</div></div>` : '';
+        const ev = evidence.find(e => e.id === id);
+        return ev
+          ? `<div class="journal-evidence-item">
+               <div class="journal-evidence-title">${ev.title}</div>
+               <div class="journal-evidence-desc">${ev.description}</div>
+             </div>`
+          : '';
       }).join('');
-  // Suspects
-  document.getElementById('journal-suspects-tab').innerHTML = suspects.map(s =>
-    `<div class="journal-suspect-entry"><div class="journal-suspect-name">${s.name}</div><div class="journal-suspect-role">${s.role}</div></div>`).join('');
-  // Timeline
-  document.getElementById('journal-timeline-tab').innerHTML = timeline.map(t =>
-    `<div class="journal-timeline-item"><div class="journal-time">${t.time}</div><div class="journal-event">${t.event}</div></div>`).join('');
+
+  document.getElementById('journal-suspects-tab').innerHTML =
+    suspects.map(s =>
+      `<div class="journal-suspect-entry">
+         <div class="journal-suspect-name">${s.name}</div>
+         <div class="journal-suspect-role">${s.role}</div>
+       </div>`).join('');
+
+  document.getElementById('journal-timeline-tab').innerHTML =
+    timeline.map(t =>
+      `<div class="journal-timeline-item">
+         <div class="journal-time">${t.time}</div>
+         <div class="journal-event">${t.event}</div>
+       </div>`).join('');
 }
 
-/* =============================================
-   2D LAB - INIT
-   ============================================= */
+/* ============================================================
+   LAB INIT
+   ============================================================ */
 
 function initLab() {
-  player.x = 8*TILE; player.y = 10*TILE; player.dir = 'down';
-  document.getElementById('dialogue-panel').classList.add('hidden');
-  document.getElementById('journal-panel').classList.add('hidden');
-  gameState.dialogueOpen = false; gameState.journalOpen = false;
+  // Build collision map once (or rebuild if called again)
+  buildCollisionMap();
 
+  // Reset player to safe start position
+  player.x   = 5 * TILE;
+  player.y   = 7 * TILE;
+  player.dir = 'down';
+  player.moving = false;
+  player.animStep = 0;
+  player.animTimer = 0;
+
+  // Reset camera to player position instantly (no lerp on first frame)
   canvas = document.getElementById('lab-canvas');
-  ctx = canvas.getContext('2d');
+  ctx    = canvas.getContext('2d');
   canvas.width  = canvas.offsetWidth  || window.innerWidth;
   canvas.height = canvas.offsetHeight || window.innerHeight;
+  cam.x = Math.max(0, Math.min(MAP_W - canvas.width,  player.x + player.w/2 - canvas.width/2));
+  cam.y = Math.max(0, Math.min(MAP_H - canvas.height, player.y + player.h/2 - canvas.height/2));
 
+  // Close any open overlays
+  document.getElementById('dialogue-panel').classList.add('hidden');
+  document.getElementById('journal-panel').classList.add('hidden');
+  gameState.dialogueOpen = false;
+  gameState.journalOpen  = false;
+  gameState.lastTime     = 0;
+
+  // Register input (remove first to prevent duplicate listeners)
+  document.removeEventListener('keydown', onKeyDown);
+  document.removeEventListener('keyup',   onKeyUp);
   document.addEventListener('keydown', onKeyDown);
   document.addEventListener('keyup',   onKeyUp);
 
+  // Start loop
   if (gameState.loopId) cancelAnimationFrame(gameState.loopId);
-  gameLoop();
+  gameState.loopId = requestAnimationFrame(gameLoop);
 }
 
-/* =============================================
-   INITIALIZATION
-   ============================================= */
+/* ============================================================
+   DOM INIT
+   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', function () {
   renderSuspects();
